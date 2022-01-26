@@ -60,7 +60,7 @@ int	check_index(int move)
 
 int pick_choice()
 {
-    int max = 678;
+    int max = 677;
 	int min = 1; //min is always1, max is 3 or 10
     int move = 0;
     int i = 0;
@@ -79,7 +79,7 @@ char *format_tm(char *line)
     int i = 0;
     while (line[i])
     {
-        if (line[i] == ' ')
+        if (line[i] == ' ' || line[i] == '-')
             line[i] = '_';
         else
         {
