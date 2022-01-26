@@ -1,0 +1,1 @@
+Just drop program on root of repo. Program automaticly checks for paths inside of it and will warn if something is wrong
