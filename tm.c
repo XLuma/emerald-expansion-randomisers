@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <strings.h>
+#include <string.h>
 #include "includes/moves.h"
 #include "includes/battle_moves.h"
 #include <time.h>
@@ -90,7 +91,7 @@ char *format_tm(char *line)
     return (line);
 }
 
-char    *new_tm(char *line, char **movelist)
+char    *new_tm(char *line, char **movelist, FILE *tmList)
 {
     int i = 0;
     int j = 0;
@@ -103,6 +104,7 @@ char    *new_tm(char *line, char **movelist)
     //move is always [4]
     move = pick_choice();//should not pick anything gen8
     move_name = ft_strjoin("MOVE_", format_tm(movelist[move]));
+    fputs(move_name, tmList);
     tab[4] = ft_strdup(move_name);
     j = 0;
     while (tab[j])
@@ -120,18 +122,21 @@ int main(void)
     const char *party_menu_path = "src/data/party_menu.h";
     const char  *new_partymenu_path = "dist/party_menu.h";
     const char  *movelist_file = "movelist.txt";
+    const char  *newtmlist = "dist/tmlist.txt";
     //const char *tmhm_learnsets_path = "src/data/pokemon/tmhm_learnsets.h";
     sleep(1);
     //check for em
     FILE    *partymenu;
     FILE    *new_partymenu;
     FILE    *movelist;
+    FILE    *tmlist;
     char    **tab_partymenu;
     char    **tab_movelist;
     int i;
     partymenu = fopen(party_menu_path, "rb");
     new_partymenu = fopen(new_partymenu_path, "w+");
     movelist = fopen(movelist_file, "rb");
+    tmlist = fopen(newtmlist, "w+");
     if (partymenu == NULL)
     {
         printf("Error: cannot open party_menu.h\nMake sure that the files exists and are in the correct paths\n");
@@ -183,7 +188,7 @@ int main(void)
         while (i >= 1182 && i < 1232)
         {
             //1182 is the index for the first tm def so from there ez shit
-            fputs(new_tm(tab_partymenu[i], tab_movelist), new_partymenu);
+            fputs(new_tm(tab_partymenu[i], tab_movelist, tmlist), new_partymenu);
             i++;
         }
         //write normally
@@ -195,6 +200,7 @@ int main(void)
     free(tab_movelist);
     fclose(movelist);
     fclose(partymenu);
+    fclose(tmlist);
     fclose(new_partymenu);
     return 0;
 }
