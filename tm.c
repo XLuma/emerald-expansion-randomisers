@@ -104,7 +104,7 @@ char    *new_tm(char *line, char **movelist, FILE *tmList)
     //move is always [4]
     move = pick_choice();//should not pick anything gen8
     move_name = ft_strjoin("MOVE_", format_tm(movelist[move]));
-    fputs(move_name, tmList);
+    fputs(ft_strjoin(ft_itoa(move), "\n"), tmList);
     tab[4] = ft_strdup(move_name);
     j = 0;
     while (tab[j])

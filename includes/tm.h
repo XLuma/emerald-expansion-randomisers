@@ -108,5 +108,13 @@ const char *tmhmDefines[] = {
     "TM48_SKILL_SWAP",
     "TM49_SNATCH",
     "TM50_OVERHEAT",
+    "HM01_CUT",
+    "HM02_FLY",
+    "HM03_SURF",
+    "HM04_STRENGTH",
+    "HM05_FLASH",
+    "HM06_ROCK_SMASH",
+    "HM07_WATERFALL",
+    "HM08_DIVE",
 };
 #endif
