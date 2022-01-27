@@ -143,7 +143,7 @@ int main(void)
     FILE  *file_new_tmhm;
 
     file_tmhm = fopen(tmhm_path, "rb");
-    file_tmlist = fopen(tmhm_path, "rb");
+    file_tmlist = fopen(tmlist_path, "rb");
     file_new_tmhm = fopen(new_tmhm, "w+");
     if (file_new_tmhm == NULL || file_tmlist == NULL || file_tmhm == NULL)
     {
@@ -170,7 +170,7 @@ int main(void)
 	char	**tab_tmhm;
 	char	**tab_tmlist;
 	tab_tmhm = (char **)malloc(size_tmhm + 1);
-	tab_tmlist = (char **)malloc(size_tmlist + 1);
+	tab_tmlist = (char **)malloc((51 * sizeof(char *)) + 1);
 	long lenght;
 	int i = 0;
 	char *line = NULL;
@@ -206,8 +206,6 @@ int main(void)
 			species = ft_strjoin(get_species(tab_tmhm[i]), " = ");
 			fputs(create_compat(species, tab_tmlist), file_new_tmhm);
 			i++;
-			//while (ft_strnstr(tab_tmhm[i], "SPECIES", ft_strlen(tab_tmhm[i])) == NULL)
-			//	i++;
 		}
 		else
 		{
