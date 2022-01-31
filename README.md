@@ -6,7 +6,7 @@ the rh-hideout group for the expansion project, as well as pret. Headers are mos
 
 # Current state
 - TM randomiser: Working, only takes gen1-7 moves minus Z-moves into account
-- TM compat randomiser: In the work
+- TM compat randomiser: Working, feeds off an exported tmlist.txt from TM randomiser
 - Special mart randomiser: TODO
 
 requested by gameboyluke, not planning to release to the public cuz ugly code
