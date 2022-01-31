@@ -79,7 +79,7 @@ const char *tmhmDefines[] = {
     "TM19_GIGA_DRAIN",
     "TM20_SAFEGUARD",
     "TM21_FRUSTRATION",
-    "TM22_SOLARBEAM",
+    "TM22_SOLAR_BEAM",
     "TM23_IRON_TAIL",
     "TM24_THUNDERBOLT",
     "TM25_THUNDER",

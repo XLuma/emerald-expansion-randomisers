@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <strings.h>
+//#include <strings.h>
+#include <string.h>
 #include "includes/moves.h"
 #include "includes/battle_moves.h"
 #include <time.h>
