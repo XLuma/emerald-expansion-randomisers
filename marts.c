@@ -8,7 +8,7 @@
 #include "includes/tm.h"
 #include "42-libft/libft.h"
 
-const char *mart_paths[]{
+const char *mart_paths[] = {
   "data/maps/LavaridgeTown_HerbShop/scripts.inc",
   "data/maps//scripts.inc",
   "data/maps//scripts.inc",
@@ -17,8 +17,9 @@ const char *mart_paths[]{
   "data/maps//scripts.inc",
   "data/maps//scripts.inc",
   "data/maps//scripts.inc",
-  "data/maps//scripts.inc"
+  "data/maps//scripts.inc",
 };
+
 char *convertToLine(int n, char **input) {
   /* compute the needed size,
      of course can also use malloc then realloc to avoid that */
