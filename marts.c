@@ -10,9 +10,9 @@
 
 const char *mart_paths[] = {
   "data/maps/LavaridgeTown_HerbShop/scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
+  "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc",
+  "data/maps/LilycoveCity_DepartmentStore_3F/scripts.inc",
+  "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc",
   "data/maps//scripts.inc",
   "data/maps//scripts.inc",
   "data/maps//scripts.inc",
