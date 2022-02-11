@@ -13,11 +13,7 @@ const char *mart_paths[] = {
   "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc",
   "data/maps/LilycoveCity_DepartmentStore_3F/scripts.inc",
   "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
-  "data/maps//scripts.inc",
+  "data/maps/SlateportCity/scripts.inc", //Energy guru and power tm
 };
 
 char *convertToLine(int n, char **input) {
@@ -46,10 +42,12 @@ char *convertToLine(int n, char **input) {
 
 int main(void)
 {
+  srand(time(NULL));
   //Use our array of strings, and simply... while loop through all of them. Need to recreate file tree for ease of replacing
 
   FILE *current_file;
   FILE *current_new_file;
+  long size_current;
   char *new_file;
 
   char **file_tab;
@@ -65,13 +63,25 @@ int main(void)
 
     if (current_new_file == NULL || current_file == NULL)
     {
-      printf("Cannot open a file ! Make sure the the file exists at its proper source")
+      printf("Cannot open a file ! Make sure the the file exists at its proper source\n");
       printf("Current file: %s\n", mart_paths[i]);
       fclose(current_file);
       fclose(current_new_file);
       return 1;
     }
-    
+	fseek(current_file, 0L, SEEK_END);
+	size_current = ftell(current_file);
+	rewind(current_file);
+	file_tab = (char **)malloc((size_current * sizeof(char *)) + 1);
+	while (!feof(current_file))
+	{
+		getline(&line, &lenght, current_file);
+		file_tab = ft_strdup(line);
+		i++;
+	}
+	i = 0;
+	
+    i++;
   }
   return 0;
 }
