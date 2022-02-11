@@ -76,11 +76,11 @@ int main(void)
 	while (!feof(current_file))
 	{
 		getline(&line, &lenght, current_file);
-		file_tab = ft_strdup(line);
+		file_tab[i] = ft_strdup(line);
 		i++;
 	}
 	i = 0;
-	
+
     i++;
   }
   return 0;
