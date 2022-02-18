@@ -53,7 +53,7 @@ char **parse_items(char **item_names)
 	}
 	long item_size;
 	fseek(item_file, 0L, SEEK_END);
-	item_size = ftell(item_size);
+	item_size = ftell(item_file);
 	rewind(item_file);
 	item_names = (char **)malloc((item_size * sizeof(char *)) + 1);
 	int i = 0;
