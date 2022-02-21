@@ -76,6 +76,11 @@ char *get_mart_name(char *line)
 
 	tmp = ft_split(line, ' ');
 	//splitted line, so last index is the name. so index [1]
+	while (tmp[1][i] != '\n')
+	{
+		i++;
+	}
+	tmp[1][i] = ':';
 	return(tmp[1]);
 }
 
@@ -94,7 +99,7 @@ int	count_2bytes(char **tab, int index)
 
 int is_legal(int item)
 {
-	if ((item >= ITEM_FIGY_BERRY && item <= ITEM_ROWAP_BERRY) || item > ITEM_TM50 || (item >= ITEM_LUCKY_PUNCH && item <= ITEM_YELLOW_SCARF) || item == ITEM_SHOAL_SALT || item == ITEM_SHOAL_SHELL || (item >= ITEM_GROWTH_MULCH && item <= ITEM_RETRO_MAIL) || item == ITEM_ODD_KEYSTONE || (item >= ITEM_NORMALIUM_Z && item <= ITEM_ULTRANECROZIUM_Z) || item == ITEM_LIGHT_BALL || item == ITEM_ORAN_BERRY || item == ITEM_NONE)
+	if (item == ITEM_NONE || (item >= ITEM_FIGY_BERRY && item <= ITEM_ROWAP_BERRY) || item > ITEM_TM50 || (item >= ITEM_LUCKY_PUNCH && item <= ITEM_YELLOW_SCARF) || item == ITEM_SHOAL_SALT || item == ITEM_SHOAL_SHELL || (item >= ITEM_GROWTH_MULCH && item <= ITEM_RETRO_MAIL) || item == ITEM_ODD_KEYSTONE || (item >= ITEM_NORMALIUM_Z && item <= ITEM_ULTRANECROZIUM_Z) || item == ITEM_LIGHT_BALL || item == ITEM_ORAN_BERRY)
 		return 1;
 	return 0;
 }
@@ -103,10 +108,10 @@ int select_item(void)
 {
 	int ret;
 
-	ret = rand() % ((759 + 1) - 1) + 1;
+	ret = rand() % ((759 + 2) - 2) + 2;
 	while (is_legal(ret) == 1)
 	{
-		ret = rand() % ((759 + 1) - 1) + 1;
+		ret = rand() % ((759 + 2) - 2) + 2;
 	}
 	return ret;
 }
@@ -116,6 +121,11 @@ char *new_item(char **item_names)
 	char *ret;
 
 	item = select_item();
+	while (ft_strnstr(item_names[item], "ITEM_NONE", ft_strlen(item_names[item])) != NULL)
+	{
+		item = select_item();
+	}
+	printf("item: %d\n", item);
 	ret = ft_strdup(item_names[item]);
 	ret[ft_strlen(ret) - 1] = '\n'; //should change the comma to a newline char
 
@@ -144,7 +154,7 @@ int main(void)
 	{
 		return 1;
 	}
-	int i = 0;
+	int i = 2;
 	int j = 0;
 	while (mart_paths[i]) //loop through all paths
 	{
@@ -186,9 +196,10 @@ int main(void)
 			if (ft_strnstr(file_tab[j], "pokemart ", ft_strlen(file_tab[j])) != NULL) //found "pokemart "! space to avoid pokemartdecoration
 			{
 				line = get_mart_name(file_tab[j]);
-				fputs(file_tab[j], current_new_file); //have to force writing since we arent near the shop yet.
+				line = ft_strjoin(line, "\n");
+				//fputs(file_tab[j], current_new_file); //have to force writing since we arent near the shop yet.
 			}
-			if (ft_strnstr(file_tab[j], line, ft_strlen(file_tab[j])) != NULL) //if we got the shop name. hopefully this works and wont do weird shit
+			if (line != NULL && ft_strnstr(file_tab[j], line, ft_strlen(file_tab[j])) != NULL) //if we got the shop name. hopefully this works and wont do weird shit
 			{
 				fputs(file_tab[j], current_new_file); //still gotta force write the first line
 				/* So here we need to somehow parse exactly n lines with ".2byte" in them until "release".
