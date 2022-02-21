@@ -154,7 +154,7 @@ int main(void)
 	{
 		return 1;
 	}
-	int i = 2;
+	int i = 0;
 	int j = 0;
 	while (mart_paths[i]) //loop through all paths
 	{
@@ -180,6 +180,7 @@ int main(void)
 			file_tab[j] = ft_strdup(line);
 			j++;
 		}
+		file_tab[j] = NULL;
 		j = 0;
 		printf("Randomizing %s...\n", mart_paths[i]);
 
@@ -192,8 +193,7 @@ int main(void)
 			/* Loop through the entire file. for each "pokemart " we find, keep the value in memory somehow.
 			and we KEEP searching for other pokemarts while we output to the new file to avoid possible conflitcs.
 			*/
-
-			if (ft_strnstr(file_tab[j], "pokemart ", ft_strlen(file_tab[j])) != NULL) //found "pokemart "! space to avoid pokemartdecoration
+			if (file_tab[j] != NULL && ft_strnstr(file_tab[j], "pokemart ", ft_strlen(file_tab[j])) != NULL) //found "pokemart "! space to avoid pokemartdecoration
 			{
 				line = get_mart_name(file_tab[j]);
 				line = ft_strjoin(line, "\n");
@@ -224,6 +224,8 @@ int main(void)
 			j++;
 		}
 		/* So here, we should have written a new file with new items. So we have to free all current mem used, and making sure its all good for next file */
+		free(line);
+		line = NULL;
 		free(file_tab);
 		fclose(current_file);
 		fclose(current_new_file);
