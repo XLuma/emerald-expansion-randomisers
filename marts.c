@@ -99,7 +99,7 @@ int	count_2bytes(char **tab, int index)
 
 int is_legal(int item)
 {
-	if (item == ITEM_NONE || (item >= ITEM_FIGY_BERRY && item <= ITEM_ROWAP_BERRY) || item > ITEM_TM50 || (item >= ITEM_LUCKY_PUNCH && item <= ITEM_YELLOW_SCARF) || item == ITEM_SHOAL_SALT || item == ITEM_SHOAL_SHELL || (item >= ITEM_GROWTH_MULCH && item <= ITEM_RETRO_MAIL) || item == ITEM_ODD_KEYSTONE || (item >= ITEM_NORMALIUM_Z && item <= ITEM_ULTRANECROZIUM_Z) || item == ITEM_LIGHT_BALL || item == ITEM_ORAN_BERRY)
+	if ( (item >= ITEM_EXP_CANDY_XS && item <= ITEM_DYNAMAX_CANDY) || (item >= ITEM_ABILITY_PATCH && item <= ITEM_SERIOUS_MINT) || item == ITEM_MAX_HONEY || item == ITEM_NONE || (item >= ITEM_FIGY_BERRY && item <= ITEM_ROWAP_BERRY) || (item >= ITEM_TM01 && item <= ITEM_TM50) || item > ITEM_TM50 || (item >= ITEM_LUCKY_PUNCH && item <= ITEM_YELLOW_SCARF) || item == ITEM_SHOAL_SALT || item == ITEM_SHOAL_SHELL || (item >= ITEM_GROWTH_MULCH && item <= ITEM_RETRO_MAIL) || item == ITEM_ODD_KEYSTONE || (item >= ITEM_NORMALIUM_Z && item <= ITEM_ULTRANECROZIUM_Z) || item == ITEM_LIGHT_BALL || item == ITEM_ORAN_BERRY)
 		return 1;
 	return 0;
 }
