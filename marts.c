@@ -108,13 +108,28 @@ int select_item(void)
 {
 	int ret;
 
-	ret = rand() % ((759 + 2) - 2) + 2;
+	ret = rand() % ((759 + 1) - 2) + 2;
 	while (is_legal(ret) == 1)
 	{
-		ret = rand() % ((759 + 2) - 2) + 2;
+		ret = rand() % ((759 + 1) - 2) + 2;
 	}
 	return ret;
 }
+
+int	select_tm(void)
+{
+	int ret;
+
+	ret = rand() % ((ITEM_TM50_OVERHEAT + 1) - ITEM_TM01_FOCUS_PUNCH) + ITEM_TM01_FOCUS_PUNCH;
+	/*
+	while (is_legal(ret) == 1)
+	{
+		ret = rand() % ((ITEM_TM50_OVERHEAT + ITEM_TM01_FOCUS_PUNCH) - ITEM_TM01_FOCUS_PUNCH) + ITEM_TM01_FOCUS_PUNCH;
+	}
+	*/
+	return ret;
+}
+
 char *new_item(char **item_names)
 {
 	int item;
@@ -127,7 +142,29 @@ char *new_item(char **item_names)
 	}
 	printf("item: %d\n", item);
 	ret = ft_strdup(item_names[item]);
-	ret[ft_strlen(ret) - 1] = '\n'; //should change the comma to a newline char
+	ret[ft_strlen(ret) - 2] = '\n'; //should change the comma to a newline char
+	ret[ft_strlen(ret) - 1] = '\0';
+
+	ret  = ft_strjoin("	.2byte ", ret);
+	return ret;
+}
+
+char *new_tm(char **item_names)
+{
+	int item;
+	char *ret;
+
+	item = select_tm();
+	/*
+	while (ft_strnstr(item_names[item], "ITEM_NONE", ft_strlen(item_names[item])) != NULL)
+	{
+		item = select_tm();
+	}
+	*/
+	printf("item: %d\n", item);
+	ret = ft_strdup(item_names[item]);
+	ret[ft_strlen(ret) - 2] = '\n'; //should change the comma to a newline char
+	ret[ft_strlen(ret) - 1] = '\0';
 
 	ret  = ft_strjoin("	.2byte ", ret);
 	return ret;
@@ -212,7 +249,10 @@ int main(void)
 					/* Loop for nb_2bytes time, creating a new .2byte string
 					on each iteration, then writing it. more efficient than trying to edit an entire double
 					array of them, since we only care about when it end */
-					fputs(new_item(item_names), current_new_file);
+					if (i == 3)
+						fputs(new_tm(item_names), current_new_file);
+					else
+						fputs(new_item(item_names), current_new_file);
 					tmp_counter++;
 					j++;//this one is so were jumping over all of em
 				}
