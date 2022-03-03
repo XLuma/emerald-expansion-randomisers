@@ -7,6 +7,9 @@ the rh-hideout group for the expansion project, as well as pret. Headers are mos
 # Current state
 - TM randomiser: Working, only takes gen1-7 moves minus Z-moves into account
 - TM compat randomiser: Working, feeds off an exported tmlist.txt from TM randomiser
-- Special mart randomiser: TODO
+- Special mart randomiser: Fully working. Make sure to create correct path in dist
 
-requested by gameboyluke, not planning to release to the public cuz ugly code
+requested by gameboyluke for the Emerald Lockeout mod
+
+
+NO support will be provided for this
